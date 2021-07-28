@@ -2,7 +2,6 @@ localStorage.setItem('firstVisit', 1);
 let firstView = localStorage.getItem("firstVisit");
 
 console.log(firstView);
-console.log('asif');
 
 $(function() {
 
@@ -483,7 +482,7 @@ var myChart = new Chart(ctx, {
         datasets:[
             {
                 label: "Time Counting",
-                data:[localStorage.getItem('page1'), localStorage.getItem('page2'), localStorage.getItem('page3'), localStorage.getItem('page4'), localStorage.getItem('page5'), localStorage.getItem('page6'), localStorage.getItem('page7'), 30, 500, 60],
+                data:[localStorage.getItem('page1'), localStorage.getItem('page2'), localStorage.getItem('page3'), localStorage.getItem('page4'), localStorage.getItem('page5'), localStorage.getItem('page6'), localStorage.getItem('page7'), 30, 10, 60],
                 backgroundColor:[
                     "#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2"
                 ]
