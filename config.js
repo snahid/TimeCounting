@@ -334,7 +334,7 @@ let div7 = document.getElementById("main-7");
 let mypage1,mypage2,mypage3,mypage4,mypage5,mypage6,mypage7;
 // Page 1 
 div1.addEventListener("mouseleave", function(){
-  mypage1 = document.getElementById("page-1").innerHTML;
+  mypage1 = document.getElementById("timeInSeconds").innerHTML;
   if(firstView == 1){
     if(localStorage["page1"]){
       let rpage1 = localStorage.getItem('page1');
@@ -469,8 +469,30 @@ div7.addEventListener("mouseleave", function(){
 // Save Data 
 
 // Set Interval function 
+// let answer;
+// function checkUpdate(){
+//   answer = localStorage.getItem('page1');
+//   return answer;
+// }
 
-// Set Interval function 
+
+
+function exampleFunction() {
+  a = localStorage.getItem('page1');
+  return a;
+}
+
+function noDelaySetInterval(func, interval) {
+  return setInterval(func, interval);
+}
+
+function startSetInterval() {
+  noDelaySetInterval(exampleFunction, 1000);
+}
+
+// startSetInterval();
+
+
 
 
 //  Graph 
@@ -478,11 +500,11 @@ var ctx = document.getElementById("myChart").getContext("2d");
 var myChart = new Chart(ctx, {
     type:"bar",
     data:{
-        labels:["1", "2", "3", "4", "5", "6", "7", "8", "9", "10" ],
+        labels:["1", "2", "3", "4", "5", "6", "7"],
         datasets:[
             {
                 label: "Time Counting",
-                data:[localStorage.getItem('page1'), localStorage.getItem('page2'), localStorage.getItem('page3'), localStorage.getItem('page4'), localStorage.getItem('page5'), localStorage.getItem('page6'), localStorage.getItem('page7'), 30, 10, 60],
+                data:[localStorage.getItem('page1'), localStorage.getItem('page2'), localStorage.getItem('page3'), localStorage.getItem('page4'), localStorage.getItem('page5'), localStorage.getItem('page6'), localStorage.getItem('page7')],
                 backgroundColor:[
                     "#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2"
                 ]
