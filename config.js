@@ -3,15 +3,6 @@ let firstView = localStorage.getItem("firstVisit");
 
 console.log(firstView);
 
-$(function() {
-
-    $('[data-toggle="modal"]').hover(function() {
-      var modalId = $(this).data('target');
-      $(modalId).modal('show');
-  
-    });
-  
-  });
 
 
   let loader = document.getElementById("preloader");
@@ -348,6 +339,7 @@ div1.addEventListener("mouseleave", function(){
   }else{
     localStorage.setItem("page1", mypage1);
   }
+
 });
 // Page 1 
 
@@ -490,49 +482,54 @@ function startSetInterval() {
   noDelaySetInterval(exampleFunction, 1000);
 }
 
-// startSetInterval();
-
-
-
-
-//  Graph 
-var ctx = document.getElementById("myChart").getContext("2d");
-var myChart = new Chart(ctx, {
-    type:"bar",
-    data:{
-        labels:["1", "2", "3", "4", "5", "6", "7"],
-        datasets:[
-            {
-                label: "Time Counting",
-                data:[localStorage.getItem('page1'), localStorage.getItem('page2'), localStorage.getItem('page3'), localStorage.getItem('page4'), localStorage.getItem('page5'), localStorage.getItem('page6'), localStorage.getItem('page7')],
-                backgroundColor:[
-                    "#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2"
-                ]
-            },
-        ],
-    },
-    options:{
-        title:{
-            display:true,
-            text: "Page",
-            fontSize: 16,
-            position: "bottom",
-            fontColor: '#292929'
+var myChart;
+function showGraph() {
+    console.log(localStorage.getItem('page1'));
+    var ctx = document.getElementById("myChart").getContext("2d");
+    if (myChart) myChart.destroy();
+    myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["1", "2", "3", "4", "5", "6", "7"],
+            datasets: [
+                {
+                    label: "Time Counting",
+                    data: [localStorage.getItem('page1'), localStorage.getItem('page2'), localStorage.getItem('page3'), localStorage.getItem('page4'), localStorage.getItem('page5'), localStorage.getItem('page6'), localStorage.getItem('page7')],
+                    backgroundColor: [
+                        "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2"
+                    ]
+                },
+            ],
         },
-        layout:{
-            padding:{
-                left: 40,
-                top: 0,
-                bottom: 0,
-                right: 0,
+        options: {
+            title: {
+                display: true,
+                text: "Page",
+                fontSize: 16,
+                position: "bottom",
+                fontColor: '#292929'
             },
+            layout: {
+                padding: {
+                    left: 40,
+                    top: 0,
+                    bottom: 0,
+                    right: 0,
+                },
+            },
+
         },
-        //   scales:{
-        //     xAxes: [{
-        //         display: false //this will remove all the x-axis grid lines
-        //     }]
-        // },
-    },
+    });
+    myChart.update();
+}
+
+$(function() {
+
+    $('[data-toggle="modal"]').hover(function() {
+        showGraph();
+        var modalId = $(this).data('target');
+        $(modalId).modal('show');
+    });
+
 });
-
 // Graph
