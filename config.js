@@ -1,17 +1,7 @@
 localStorage.setItem('firstVisit', 1);
 let firstView = localStorage.getItem("firstVisit");
+// console.log(firstView);
 
-console.log(firstView);
-
-$(function() {
-
-    $('[data-toggle="modal"]').hover(function() {
-      var modalId = $(this).data('target');
-      $(modalId).modal('show');
-  
-    });
-  
-  });
 
 
   let loader = document.getElementById("preloader");
@@ -42,8 +32,8 @@ $(function() {
     console.log(bodyH);
     let fullPageHeight = bodyH;
     let page = Math.round(bodyH/viewHeight);
-    console.log("pageHeight " + bodyH);
-    console.log("Page " + page);
+    // console.log("pageHeight " + bodyH);
+    // console.log("Page " + page);
     // Get Height
 
         for (let i=1; i<=page; i++) {
@@ -58,9 +48,7 @@ $(function() {
             div.style.position = "absolute";
             div.style.zIndex = 3;
         }
-
-
-       
+      
         // page 1 
         let id1 = document.getElementById("main-1");
         id1.style.top = 0;
@@ -143,7 +131,7 @@ $(function() {
   
           let elemnt7 = document.createElement("span");
           elemnt7.setAttribute('id', "page-7");
-          elemnt7.style.opacity = 0;
+          // elemnt7.style.opacity = 0;
           id7.appendChild(elemnt7);
           // page 7 
 
@@ -182,12 +170,6 @@ $(function() {
         //  //  page 10 
 
 
-       
-
-
-
-
-
   function ViewPort() {
     let w = Math.max(
       document.documentElement.clientWidth,
@@ -202,8 +184,6 @@ $(function() {
     console.log("Your View Port Size is:" + viewsize);
   }
   ViewPort();
-
-
 
 //   Time Count 
       TimeMe.initialize({
@@ -281,11 +261,11 @@ $(function() {
           document.getElementById("page-5").textContent =
             timeSpentOnElement5.toFixed(2);
 
-            time1 = timeSpentOnElement;
-            time2= timeSpentOnElement2;
-            time3= timeSpentOnElement3;
-            time4= timeSpentOnElement4;
-            time5= timeSpentOnElement5;
+            // time1 = timeSpentOnElement;
+            // time2= timeSpentOnElement2;
+            // time3= timeSpentOnElement3;
+            // time4= timeSpentOnElement4;
+            // time5= timeSpentOnElement5;
 
         
 
@@ -316,12 +296,6 @@ $(function() {
         }, 37);
       };
 //   Time Count 
-
-
-
-
-
-
 
 // Save Data 
 let div1 = document.getElementById("main-1");
@@ -452,7 +426,7 @@ div7.addEventListener("mouseleave", function(){
   if(firstView == 1){
     if(localStorage["page7"]){
       let rpage7 = localStorage.getItem('page7');
-      localStorage.setItem("page1", parseInt(parseInt(mypage7)+parseInt(rpage7)));
+      localStorage.setItem("page7", parseInt(parseInt(mypage7)+parseInt(rpage7)));
         // console.log(rpage1);
         // console.log('asifff');
         // console.log(mypage);
@@ -465,74 +439,57 @@ div7.addEventListener("mouseleave", function(){
 });
 // Page 7
 
-
 // Save Data 
 
-// Set Interval function 
-// let answer;
-// function checkUpdate(){
-//   answer = localStorage.getItem('page1');
-//   return answer;
-// }
-
-
-
-function exampleFunction() {
-  a = localStorage.getItem('page1');
-  return a;
-}
-
-function noDelaySetInterval(func, interval) {
-  return setInterval(func, interval);
-}
-
-function startSetInterval() {
-  noDelaySetInterval(exampleFunction, 1000);
-}
-
-// startSetInterval();
-
-
-
-
 //  Graph 
-var ctx = document.getElementById("myChart").getContext("2d");
-var myChart = new Chart(ctx, {
-    type:"bar",
-    data:{
-        labels:["1", "2", "3", "4", "5", "6", "7"],
-        datasets:[
-            {
-                label: "Time Counting",
-                data:[localStorage.getItem('page1'), localStorage.getItem('page2'), localStorage.getItem('page3'), localStorage.getItem('page4'), localStorage.getItem('page5'), localStorage.getItem('page6'), localStorage.getItem('page7')],
-                backgroundColor:[
-                    "#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2","#3a7af2"
-                ]
-            },
-        ],
-    },
-    options:{
-        title:{
-            display:true,
-            text: "Page",
-            fontSize: 16,
-            position: "bottom",
-            fontColor: '#292929'
-        },
-        layout:{
-            padding:{
-                left: 40,
-                top: 0,
-                bottom: 0,
-                right: 0,
-            },
-        },
-        //   scales:{
-        //     xAxes: [{
-        //         display: false //this will remove all the x-axis grid lines
-        //     }]
-        // },
-    },
-});
 
+var myChart;
+function showGraph() {
+  var ctx = document.getElementById("myChart").getContext("2d");
+  if (myChart) myChart.destroy();
+  myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["1", "2", "3", "4", "5", "6", "7"],
+      datasets: [
+        {
+          label: "Time Counting",
+          data: [localStorage.getItem('page1'), localStorage.getItem('page2'), localStorage.getItem('page3'), localStorage.getItem('page4'), localStorage.getItem('page5'), localStorage.getItem('page6'), localStorage.getItem('page7')],
+          backgroundColor: [
+            "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2", "#3a7af2"
+          ]
+        },
+      ],
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Page",
+        fontSize: 16,
+        position: "bottom",
+        fontColor: '#292929'
+      },
+      layout: {
+        padding: {
+          left: 40,
+          top: 0,
+          bottom: 0,
+          right: 0,
+        },
+      },
+
+    },
+  });
+  myChart.update();
+}
+
+$(function () {
+
+  $('[data-toggle="modal"]').hover(function () {
+    showGraph();
+    var modalId = $(this).data('target');
+    $(modalId).modal('show');
+  });
+
+});
 // Graph
